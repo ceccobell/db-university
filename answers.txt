@@ -23,3 +23,18 @@ laurea (286)
 
 8. Quanti sono gli insegnanti che non hanno un numero di telefono? (50)
     SELECT * FROM `teachers` WHERE phone is NULL;
+
+9. Inserire nella tabella degli studenti un nuovo record con i propri dati (per il campo
+degree_id, inserire un valore casuale)
+    INSERT INTO students(id, degree_id, name, surname, date_of_birth, fiscal_code, enrolment_date, registration_number, email)
+VALUES (
+    (SELECT MAX(last_id) + 1 FROM (SELECT MAX(id) AS last_id FROM students) AS temp_table), 
+    FLOOR(RAND() * 100) + 1, 
+    'Francesco', 
+    'Bellingeri', 
+    '2001-02-09', 
+    'BLLFNC01B09I577G', 
+    '2024-01-01', 
+    '254253', 
+    'francescobellingeri01@gmail.com'
+);
